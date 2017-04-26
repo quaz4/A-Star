@@ -5,7 +5,11 @@ from GraphNode import GraphNode
 class AStar():
 	"""A* search object"""
 	def __init__(self):
-		self.graphNodes = 0
+		self.graphNodesCount = 0
+		self.loadedNodes = []
+		self.treeCount = 0
+		self.frontierCount = 0
+		self.frontier = []
 
 	def generateGraph(self, graphFile, heuristicFile):
 		# Open Graph file for processing
@@ -74,3 +78,53 @@ class AStar():
 		for file in glob.glob("graph/*"):
 			print("FILE REMOVED: " + file)
 			os.remove(file)
+
+	def search(self, root, goal):
+		# Initialise frontier by adding root value
+		wrapper = []
+		wrapper.append(0)
+		wrapper.append(GraphNode().fromFile(root))
+		self.frontier.append(wrapper)
+
+		while True:
+			self.updateFrontier()
+			break
+
+	def updateFrontier(self):
+		sucessor = self.frontier[0]
+
+
+
+		#for child in sucessor.connections.
+		#	pass
+		'''
+		copy = list(self.frontier)
+
+		for node in copy:
+			# TODO that 15 is subject to change later I just needed a number
+			if len(self.frontier) > 15:
+				self.frontier.pop()
+
+			self.frontier.
+		'''
+
+	
+	# Handles the nodes that are loaded in the loadedNodes list
+	# Ensuring the number of nodes in list doesn't exceed the limit
+	def loadNode(self, node):
+		#for graphNode in self.loadedNodes:
+			#if graphNode.name == node:
+			#	return graphNode
+		
+		if len(self.loadedNodes) > 6:
+			self.loadedNodes.pop(0)
+			self.loadedNodes.append(GraphNode().fromFile(node))
+		else:
+			self.loadedNodes.append(GraphNode().fromFile(node))
+
+	def addFrontier(self, path, node, total):
+		file = open("frontier/" + total + "_" + node, "w+")
+		file.write(path)
+
+	def removeFrontier(self, node, total):
+		os.remove("frontier/" + total + "_" + node)
