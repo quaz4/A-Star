@@ -1,10 +1,11 @@
-from os import listdir
+import os
+import glob
 from GraphNode import GraphNode
 
 class AStar():
 	"""A* search object"""
 	def __init__(self):
-		pass
+		self.graphNodes = 0
 
 	def generateGraph(self, graphFile, heuristicFile):
 		# Open Graph file for processing
@@ -14,7 +15,7 @@ class AStar():
 
 		# Loop through all lines in graph file and build graph
 		for i in lines:
-			print(i)
+			#print(i)
 
 			nodeInfo = i.split()
 
@@ -22,8 +23,8 @@ class AStar():
 			node2 = None
 
 			# Check if first node exists, make if doesn't exist
-			if nodeInfo[0] not in listdir("graph"):
-				print("First Instance of " + nodeInfo[0])
+			if nodeInfo[0] not in os.listdir("graph"):
+				#print("First Instance of " + nodeInfo[0])
 				node1 = GraphNode().initial(nodeInfo[0])
 				# node.save()
 			else:
@@ -31,8 +32,8 @@ class AStar():
 			
 
 			# Check if second node exists, make if doesn't exist
-			if nodeInfo[1] not in listdir("graph"):
-				print("First Instance of " + nodeInfo[1])
+			if nodeInfo[1] not in os.listdir("graph"):
+				#print("First Instance of " + nodeInfo[1])
 				node2 = GraphNode().initial(nodeInfo[1])
 				# node.save()
 			else:
@@ -53,17 +54,23 @@ class AStar():
 
 			# Loop through all lines in Heuristic file and add values to graph
 			for i in lines:
-				print("#HEURISTIC: " + i[:-1])
-				print(i)
+				#print("#HEURISTIC: " + i[:-1])
+				#print(i)
 
 				heuristic = i.split()
 
 				# Check if node exists
-				if heuristic[0] in listdir("graph"):
-					print("Passed1" + heuristic[0])
+				if heuristic[0] in os.listdir("graph"):
+					#print("Passed1" + heuristic[0])
 					
 					node = GraphNode().fromFile(heuristic[0])
 					
 					node.heuristic = heuristic[1]
 					node.save()
 
+	# Remove all files previously generated in 'graph' directory
+	def cleanUp(self):
+		print "Cleanup"
+		for file in glob.glob("graph/*"):
+			print("FILE REMOVED: " + file)
+			os.remove(file)

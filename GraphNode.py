@@ -16,8 +16,8 @@ class GraphNode():
 		# Set name from filename as they are identical
 		obj.name = fileName
 		# Set heuristic then discard the line
-		print len(lines)
-		print "graph/" + fileName
+		#print len(lines)
+		#print "graph/" + fileName
 		obj.heuristic = int(lines.pop(0))
 
 		# Loop through each edge (if any)
@@ -51,14 +51,14 @@ class GraphNode():
 	# Saves the objects data as ASCII characters
 	def save(self):
 		file = open("graph/" + self.name, "w+")
-		print "Opened file to save"
+		#print "Opened file to save"
 
 		file.write(str(self.heuristic)  + "\n")
 
-		print "Written heuristic value"
+		#print "Written heuristic value"
 
 		for node in self.getConnections():
 			file.write(node + " " + self.getCost(node) + "\n")
-			print "Writing connection data"
+			#print "Writing connection data"
 
-		print("saved")
+		#print("saved")
