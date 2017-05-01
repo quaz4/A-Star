@@ -1,7 +1,7 @@
 from AStar import AStar
 
-aStar = AStar()
+aStar = AStar("A", "G","graph.txt", "heuristic.txt")
+aStar.search()
 aStar.cleanUp()
-aStar.generateGraph("graph.txt", "heuristic.txt")
 
 print("Done")

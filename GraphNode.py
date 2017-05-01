@@ -25,6 +25,8 @@ class GraphNode():
 			edgeInfo = line.split()
 			obj.connections[edgeInfo[0]] = edgeInfo[1]
 
+		print obj.connections
+
 		return obj
 
 	# Using class methods to add multiple constructor functionality to python

@@ -1,2 +1,8 @@
-D E 10
-E F 10
+A B 10
+A E 10
+B E 15
+B C 10
+C D 10
+E F 15
+F C 5
+F G 15
